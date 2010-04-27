@@ -59,3 +59,8 @@ namespace :dist do
     pkg.need_tar = true
   end
 end
+
+task :cleanup do 
+  `rm -rf pkg`
+  `rm -rf coverage`
+end
