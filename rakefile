@@ -1,0 +1,51 @@
+require 'rubygems'
+require 'lib/squidward'
+require 'rake'
+require 'spec'
+require 'mocha'
+require 'spec/rake/spectask'
+require 'rake/gempackagetask'
+require 'rake/rdoctask'
+
+task :default => [:specs]
+
+task :specs do
+  Spec::Rake::SpecTask.new('specs_run') do |t|
+    t.spec_files = FileList['spec/**/*.rb']
+    t.rcov = true
+    t.rcov_opts = ['--text-report', '--exclude', ".bundle,.gem,spec,Library,#{ENV['GEM_HOME']}", '--sort', 'coverage' ]
+    t.spec_opts = ['-cfn']
+  end
+  Rake::Task['specs_run'].invoke
+end
+
+namespace :dist do  
+  spec = Gem::Specification.new do |s|
+    s.name              = 'squidward'
+    s.version           = Gem::Version.new(Squidward::Command::Version::GEM_VERSION)
+    s.summary           = "Backup tool for taking SimpleDB domains to compressed files inside Amazon S3"
+    s.description       = "A dead simple tool for doing backups of simpledb domains."
+    s.email             = 'johnny.halife@me.com'
+    s.author            = 'Johnny G. Halife'
+    s.homepage          = 'http://squidward.heroku.com'
+
+    s.files              = %w(rakefile) + Dir.glob("{bin,lib,spec}/**/*")
+    s.executables        = "squidward"
+    s.default_executable = "squidward"
+    
+    s.platform          = Gem::Platform::RUBY
+    s.has_rdoc          = true
+    s.rdoc_options      << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
+
+    s.require_path      = "lib"
+    s.bindir            = "bin"    
+
+    # Dependencies
+    s.add_dependency 'aws-s3'
+    s.add_dependency 'sdbtools'
+  end
+  
+  Rake::GemPackageTask.new(spec) do |pkg|
+    pkg.need_tar = true
+  end
+end

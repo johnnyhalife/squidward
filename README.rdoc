@@ -1,0 +1,70 @@
+=Squidward, the missing SimpleDB backup tool
+
+I love Amazon SimpleDB, the no-sql databases are built for scale, and are awesome and flexible as our businesses are today. But when talking 
+a lot about cloud we usually forget about a critical stuff like backup. 
+
+Most of the solutions I've seen (up today) are paid, or lack of something I needed, or are too complex, that's why I created 
+__squidward__ for taking all my data from SimpleDB to a single compressed file on S3 that I can later download.
+
+It's pretty damn simple, so if you need it use it, if something is missing just write an issue or something, and I'll probably write it down.
+
+===Limitations
+As the current version of this project, I did not do the following things:
+- Test it on Windows 
+- Implement the restore
+- Provide a mechanism to use more than one bucket
+- Log is pretty crappy
+- And so many more....
+
+If you are interested in any of these, just write an issue and I'll probably do it, as I'll need it for my projects =).
+
+Needless to say, that if you need it you can fork me and send me a request for merging, that would be more than awesome.
+
+==Usage
+First of all, as usual do
+
+	[sudo] gem install squidward --source http://gemcutter.org
+
+On the shell type `squidward info`, you will be prompted as follows
+
+	?> squidward info
+	Enter your AWS Credentials.
+	Access Key ID: 		 <type_your_access_key>
+	Secret Access Key: <type_your_secret_key> (#for security reasons won't be displayed)
+	
+After that, some information will appear telling you that you don't have anything configured, that's fine. First set the bucket
+
+	?> squidward bucket:set my_backup.container.my_domain.com
+
+And now you are ready to start adding domains for backup 
+
+	?> squidward domain:backup <your_domain_one>
+	?> squidward domain:backup <another_domain_one> <virtual_path_on_the_bucket>
+	
+And that's it, once you have everything configured you just need to do:
+	
+	?> squidward run
+	
+It's pretty obvious that my main intention of the `run` command is to be used inside a `cron` file.
+
+If you need more than what it listed here run 
+
+	?> squidward help
+
+=== About Virtual Paths
+Amazon S3 does not support more than one physical (level), there rest of the levels (as seen in S3 Fox, CyberDuck, CloudBerry), are currently
+_Virtual Paths_, this means that those apps use / (forward-slashes) to create the feeling of a folder.
+
+On `squidward` we support storing backups inside virtual paths on the bucket, if nothing given, it will simply store it on the bucket root.
+
+=== About Formatting
+Dump format is __YAML__, you have all of your attributes there, for the ruby library I'm using, that fits perfectly for an easy restore.  
+
+==Meta
+Written by Johnny G. Halife (johnny.halife at me dot com) 
+
+Released under the <em><b>'do the fuck you want'</b></em> license.
+
+http://github.com/johnnyhalife/squidward
+
+http://squidward.heroku.com
