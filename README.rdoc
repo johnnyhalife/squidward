@@ -30,7 +30,7 @@ On the shell type `squidward info`, you will be prompted as follows
 	?> squidward info
 	Enter your AWS Credentials.
 	Access Key ID:     <type_your_access_key>
-	Secret Access Key: <type_your_secret_key> (#for security reasons won't be displayed)
+	Secret Access Key: <type_your_secret_key> #=> for security reasons won't be displayed
 	
 After that, some information will appear telling you that you don't have anything configured, that's fine. First set the bucket
 
