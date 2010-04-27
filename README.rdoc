@@ -29,7 +29,7 @@ On the shell type `squidward info`, you will be prompted as follows
 
 	?> squidward info
 	Enter your AWS Credentials.
-	Access Key ID: 		 <type_your_access_key>
+	Access Key ID:     <type_your_access_key>
 	Secret Access Key: <type_your_secret_key> (#for security reasons won't be displayed)
 	
 After that, some information will appear telling you that you don't have anything configured, that's fine. First set the bucket
@@ -53,12 +53,12 @@ If you need more than what it listed here run
 
 === About Virtual Paths
 Amazon S3 does not support more than one physical (level), there rest of the levels (as seen in S3 Fox, CyberDuck, CloudBerry), are currently
-_Virtual Paths_, this means that those apps use / (forward-slashes) to create the feeling of a folder.
+<i>Virtual Paths</i>, this means that those apps use / (forward-slashes) to create the feeling of a folder.
 
 On `squidward` we support storing backups inside virtual paths on the bucket, if nothing given, it will simply store it on the bucket root.
 
 === About Formatting
-Dump format is __YAML__, you have all of your attributes there, for the ruby library I'm using, that fits perfectly for an easy restore.  
+Dump format is <b>YAML</b>, you have all of your attributes there, for the ruby library I'm using, that fits perfectly for an easy restore.  
 
 ==Meta
 Written by Johnny G. Halife (johnny.halife at me dot com) 

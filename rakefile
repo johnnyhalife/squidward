@@ -19,6 +19,16 @@ task :specs do
   Rake::Task['specs_run'].invoke
 end
 
+namespace :docs do
+  Rake::RDocTask.new do |t|
+  	t.rdoc_dir = 'sdk/public/'
+  	t.options << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
+  	t.options << '--charset' << 'utf-8'
+  	t.rdoc_files.include('README.rdoc')
+  	t.rdoc_files.include('lib/**/*.rb')
+  end
+end
+
 namespace :dist do  
   spec = Gem::Specification.new do |s|
     s.name              = 'squidward'
