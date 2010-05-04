@@ -25,7 +25,7 @@ First of all, as usual do
 
 	[sudo] gem install squidward --source http://gemcutter.org
 
-On the shell type `squidward info`, you will be prompted as follows
+On the shell type `squidward credentials:set`, you will be prompted as follows
 
 	?> squidward credentials:set
 	Enter your AWS Credentials.
