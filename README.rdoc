@@ -27,7 +27,7 @@ First of all, as usual do
 
 On the shell type `squidward info`, you will be prompted as follows
 
-	?> squidward info
+	?> squidward credentials:set
 	Enter your AWS Credentials.
 	Access Key ID:     <type_your_access_key>
 	Secret Access Key: <type_your_secret_key> #=> for security reasons won't be displayed

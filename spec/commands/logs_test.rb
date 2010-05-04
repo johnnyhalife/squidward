@@ -2,15 +2,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../')
 require 'spec_config'
 
-describe "runner command functionality" do
-  before do 
-    Squidward::Command::Logs.any_instance.expects(:read_credentials).returns(["access_key", "secret_key"])
-  end
-  
-  it "should inherit the Base functionality" do
-    my_command = Squidward::Command::Logs.new()
-  end
-  
+describe "log command functionality" do  
   it "should set backup default bucket" do
     my_command = Squidward::Command::Logs.new()
     my_command.expects(:system).with("tail -n 25 #{File.expand_path(File.join(CONF_PATH, LOG_FILE))}")

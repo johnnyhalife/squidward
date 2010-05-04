@@ -1,7 +1,7 @@
 module Squidward
   module Command
     # Core class of the whole application. It simply runs everything once it has been configured.
-    class Run < Base
+    class Run < Secured
       def initialize()
         super
         aws_config = {}

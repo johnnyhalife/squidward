@@ -2,7 +2,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../')
 require 'spec_config'
 
-describe "runner command functionality" do
+describe "bucket command functionality" do
   before do 
     Squidward::Command::Bucket.any_instance.expects(:read_credentials).returns(["access_key", "secret_key"])
   end

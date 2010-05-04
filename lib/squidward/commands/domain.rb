@@ -1,7 +1,7 @@
 module Squidward
   module Command
     # Handles everything related to AWS SimpleDB Domains for Backup
-    class Domain < Base
+    class Domain < Secured
       # Configures a SimpleDB domain for backup. When given the second parameter is 
       # the virtual path inside the bucket to be stored.
       def backup(args)
